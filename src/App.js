@@ -1,23 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import axios from 'axios';
+import Input from './components/Input/Input';
+import { FETCH_USERS } from './store/actions';
 
-function App() {
+const App = () => {
+  
+  const dispatch = useDispatch();
+  useEffect(() => {
+    const getUsersHandler = async() => {
+        try {
+            const response = await axios.get('https://jsonplaceholder.typicode.com/users');      
+            const users = response.data;
+
+            dispatch({type: FETCH_USERS, users})
+        } catch (error){
+            alert(error.message);
+        }
+    }
+    getUsersHandler();
+},[dispatch])
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Input />
     </div>
   );
 }

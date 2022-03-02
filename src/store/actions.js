@@ -1,0 +1,3 @@
+export const INPUT_CHANGE_VALUE = 'INPUT_CHANGE_VALUE';
+export const ITEM_HANDLER = 'ITEM_HANDLER';
+export const FETCH_USERS = 'FETCH_USERS';
